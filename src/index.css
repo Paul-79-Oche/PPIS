@@ -1,0 +1,297 @@
+@import "tailwindcss";
+
+/* ─── PPIS Design System Tokens ─────────────────────────────────── */
+@theme {
+  /* Colors */
+  --color-navy:         #0B2555;
+  --color-navy-dark:    #081B3D;
+  --color-navy-light:   #1A3A6B;
+  --color-accent:       #4D9FD6;
+  --color-accent-light: #D6EAF8;
+  --color-soft-gray:    #F1F5F9;
+  --color-text-body:    #374151;
+  --color-text-muted:   #6B7280;
+  --color-border:       #E2E8F0;
+
+  /* Typography */
+  --font-sans:   'Poppins', system-ui, sans-serif;
+
+  /* Container */
+  --max-width-container: 1200px;
+
+  /* Custom spacing */
+  --spacing-18: 72px;
+  --spacing-22: 88px;
+}
+
+/* ─── Base Resets ────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-text-body);
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Typography Scale ──────────────────────────────────────────── */
+h1 {
+  font-family: var(--font-sans);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #0B2555;
+  margin: 0;
+}
+
+h2 {
+  font-family: var(--font-sans);
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #0B2555;
+  margin: 0;
+}
+
+h3 {
+  font-family: var(--font-sans);
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 600;
+  line-height: 1.3;
+  color: #0B2555;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ─── Utility Classes ───────────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding-inline: 16px;
+  }
+}
+
+/* ─── Button System ─────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+  text-decoration: none;
+  border: none;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background-color: #0B2555;
+  color: #ffffff;
+  padding: 12px 28px;
+}
+
+.btn-primary:hover {
+  background-color: #081B3D;
+  box-shadow: 0 8px 24px rgba(11, 37, 85, 0.3);
+}
+
+.btn-accent {
+  background-color: #2563EB; /* Bright blue from design */
+  color: #ffffff;
+  padding: 12px 28px;
+}
+
+.btn-accent:hover {
+  background-color: #1D4ED8;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+}
+
+.btn-secondary {
+  background-color: #ffffff;
+  color: #0B2555;
+  border: 2px solid #0B2555;
+  padding: 10px 26px;
+}
+
+.btn-secondary:hover {
+  background-color: #F1F5F9;
+  box-shadow: 0 4px 12px rgba(11, 37, 85, 0.12);
+}
+
+.btn-outline-white {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  padding: 10px 26px;
+}
+
+.btn-outline-white:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-sm {
+  background-color: #0B2555;
+  color: #ffffff;
+  padding: 8px 20px;
+  font-size: 13px;
+}
+
+.btn-sm:hover {
+  background-color: #081B3D;
+}
+
+/* ─── Card System ───────────────────────────────────────────────── */
+.card {
+  background: #ffffff;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 32px 24px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+  transform: translateY(-2px);
+}
+
+/* ─── Shadow Scale ──────────────────────────────────────────────── */
+.shadow-ppis-sm  { box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.shadow-ppis     { box-shadow: 0 4px 12px rgba(0,0,0,0.10); }
+.shadow-ppis-md  { box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+.shadow-ppis-lg  { box-shadow: 0 16px 48px rgba(11,37,85,0.16); }
+
+/* ─── Section System ────────────────────────────────────────────── */
+.section {
+  padding-block: 64px;
+}
+
+.section-sm {
+  padding-block: 48px;
+}
+
+@media (max-width: 768px) {
+  .section      { padding-block: 48px; }
+  .section-sm   { padding-block: 36px; }
+}
+
+/* ─── Navbar link active state ──────────────────────────────────── */
+.nav-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 3px;
+  transition: color 0.2s;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #2563EB;
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover { color: #2563EB; }
+.nav-link:hover::after { width: 100%; }
+.nav-link.active { color: #2563EB; font-weight: 600; }
+.nav-link.active::after { width: 100%; }
+
+/* ─── Responsive grid overrides ─────────────────────────────────── */
+@media (max-width: 768px) {
+  #features > .container > div {
+    grid-template-columns: 1fr !important;
+  }
+  #features article {
+    border-right: none !important;
+    border-bottom: 1px solid #E2E8F0;
+  }
+  #features article:last-child {
+    border-bottom: none;
+  }
+  #about > .container > div {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  #vision-mission > .container > div:last-child {
+    grid-template-columns: 1fr !important;
+  }
+  #vision-mission [id*="-card"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    padding-bottom: 28px !important;
+    margin-bottom: 4px;
+  }
+  #vision-mission [id*="-card"]:last-child {
+    border-bottom: none;
+  }
+  #quick-access > .container > div {
+    grid-template-columns: 1fr !important;
+  }
+  .about-story-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+}
+
+/* ─── Hero Slider Animations ─────────────────────────────────────── */
+@keyframes heroTextFade {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
