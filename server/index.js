@@ -32,8 +32,20 @@ app.use((err, req, res, _next) => {
 
 const { ensureStorageBucket } = require('./config/supabase');
 
-// Start Server
-app.listen(PORT, async () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-  await ensureStorageBucket();
-});
+// Start Server when run directly
+if (require.main === module) {
+  const server = app.listen(PORT, async () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+    await ensureStorageBucket();
+  });
+
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.error(`⚠️ Port ${PORT} is already in use by another process. Please close it or set another PORT in .env.`);
+    } else {
+      console.error('Server error:', err);
+    }
+  });
+}
+
+module.exports = app;

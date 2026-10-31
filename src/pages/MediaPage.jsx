@@ -9,7 +9,8 @@ export default function MediaPage() {
   useEffect(() => {
     const fetchMedia = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/media');
+        const apiBase = import.meta.env.VITE_API_URL || '/api';
+        const res = await fetch(`${apiBase}/media`);
         if (res.ok) {
           const data = await res.json();
           setMediaItems(data);

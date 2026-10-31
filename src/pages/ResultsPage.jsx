@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import PageHeader from '../components/PageHeader';
 
 const terms = ['All Terms', 'First Term', 'Second Term', 'Third Term'];
@@ -27,7 +27,8 @@ export default function ResultsPage() {
 
     try {
       const termParam = term && term !== 'All Terms' ? `&term=${encodeURIComponent(term)}` : '';
-      const res = await fetch(`http://localhost:5000/api/results/lookup?name=${encodeURIComponent(name)}&year=${year}${termParam}`);
+      const apiBase = import.meta.env.VITE_API_URL || '/api';
+      const res = await fetch(`${apiBase}/results/lookup?name=${encodeURIComponent(name)}&year=${year}${termParam}`);
       const data = await res.json();
       
       if (res.ok) {
