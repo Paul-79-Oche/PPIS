@@ -28,7 +28,15 @@ export function AuthProvider({ children }) {
         body: JSON.stringify({ email, password }),
       })
 
-      const data = await res.json()
+      // Safely parse: if server returns non-JSON (e.g. Vercel error page), show a readable message
+      const contentType = res.headers.get('content-type') || ''
+      let data
+      if (contentType.includes('application/json')) {
+        data = await res.json()
+      } else {
+        const text = await res.text()
+        throw new Error(text.slice(0, 120) || `Server error (HTTP ${res.status})`)
+      }
 
       if (!res.ok) {
         throw new Error(data.error || 'Failed to login. Please check your credentials.')

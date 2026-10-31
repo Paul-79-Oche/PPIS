@@ -14,15 +14,15 @@ app.use(cors());
 app.use(express.json()); // Parses incoming JSON requests
 app.use(express.urlencoded({ extended: true }));
 
-// Health Check Route
-app.get('/api/health', (req, res) => {
+// Health Check Route (dual prefix for Vercel rewrite compatibility)
+app.get(['/api/health', '/health'], (req, res) => {
   res.json({ status: 'ok', message: 'PPIS Backend API is running' });
 });
 
-// API Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/media', mediaRoutes);
-app.use('/api/results', resultsRoutes);
+// API Routes (dual prefix for Vercel rewrite compatibility)
+app.use(['/api/auth', '/auth'], authRoutes);
+app.use(['/api/media', '/media'], mediaRoutes);
+app.use(['/api/results', '/results'], resultsRoutes);
 
 // Error Handling Middleware
 app.use((err, req, res, _next) => {
